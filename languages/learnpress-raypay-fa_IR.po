@@ -1,0 +1,139 @@
+# Copyright (C) 2019 RayPay
+# This file is distributed under the same license as the RayPay myCRED plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: RayPay myCRED 1.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mycred-raypay-"
+"gateway\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2021-05-17 08:43+0430\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Domain: mycred-raypay-gateway\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+
+#. Description of the plugin
+msgid "RayPay payment gateway for LearnPress"
+msgstr "درگاه پرداخت رای پی برای لرن پرس"
+
+#. Description of the plugin
+msgid ""
+"<a href=\"https://raypay.ir\">RayPay</a> secure payment gateway for "
+"LearnPress"
+msgstr "درگاه پرداخت امن <a href=\"https://raypay.ir\">رای پی</a> برای لرن پرس"
+
+#. Author of the plugin
+msgid "RayPay"
+msgstr "رای پی"
+
+#. Author URI of the plugin
+msgid "https://raypay.ir"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:11
+#: class-learnpress-gateway-raypay.php:60
+#: class-learnpress-gateway-raypay.php:64
+#: class-learnpress-gateway-raypay.php:128
+msgid "RayPay payment gateway"
+msgstr "درگاه پرداخت رای پی"
+
+msgid "Make a payment with RayPay."
+msgstr "از درگاه رای پی پرداخت کنید."
+
+#: class-learnpress-gateway-raypay.php:21
+msgid "RayPay Gateway"
+msgstr "درگاه رای پی"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: class-learnpress-gateway-raypay.php:75
+msgid "Rial"
+msgstr "ریال"
+
+#: class-learnpress-gateway-raypay.php:76
+msgid "Toman"
+msgstr "تومان"
+
+#: class-learnpress-gateway-raypay.php:91
+msgid "User ID"
+msgstr "شناسه کاربری"
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Acceptor Code"
+msgstr "کد پذیرنده"
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Enable"
+msgstr "فعال سازی"
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Email"
+msgstr "ایمیل"
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Mobile"
+msgstr "شماره موبایل"
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Invalid email format."
+msgstr "ایمیل نامعتبر."
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Invalid mobile format."
+msgstr "شماره همراه نامعتبر."
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Invalid information."
+msgstr "اطلاعات واردشده معتبر نیست."
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "An error occurred while verifying the transaction."
+msgstr "خطایی هنگام استعلام تراکنش رخ داده است."
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "An error occurred while creating the transaction."
+msgstr "خطایی هنگام ایجاد تراکنش رخ داده است."
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "An error occurred while redirecting from gateway."
+msgstr "خطایی هنگام بازگشت از درگاه رخ داده است."
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "Order has been completed."
+msgstr "سفارش قبلا تکمیل شده است."
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "error status: %s"
+msgstr "کد خطا : %s"
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "error message: %s"
+msgstr "پیغام خطا: %s"
+
+#: class-learnpress-gateway-raypay.php:253
+msgid "Payment succeeded."
+msgstr "پرداخت با موفقیت انجام شد."
+
+#: class-learnpress-gateway-raypay.php:265
+#: class-learnpress-gateway-raypay.php:273
+msgid "Payment failed."
+msgstr "پرداخت با خطا مواجه شده است."
+
+#~ msgid "RayPay LearnPress"
+#~ msgstr "درگاه پرداخت رای پی برای لرن پرس"
+
+#~ msgid ""
+#~ "An unexpected error occurred when completing the payment but it is done "
+#~ "at the gateway."
+#~ msgstr ""
+#~ "خطای غیرمنتظره هنگام تکمیل پرداخت رخ داده است اما پرداخت در درگاه انجام "
+#~ "شده است."
+
+#~ msgid "RayPay myCRED"
+#~ msgstr "درگاه پرداخت رای پی برای myCRED"

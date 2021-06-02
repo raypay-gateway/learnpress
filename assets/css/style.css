@@ -1,0 +1,33 @@
+#learn-press-raypay-form {
+    padding: 20px;
+    background: #FFF;
+    border: 1px solid #DDD;
+    margin: 20px 0;
+}
+#learn-press-raypay-form .learn-press-form-row {
+	margin-bottom: 65px;
+}
+#learn-press-raypay-form .learn-press-form-row.has-error label,
+#learn-press-raypay-form .learn-press-form-row.has-error label .required{
+    color: #cc1600;
+}
+#learn-press-raypay-form .learn-press-form-row.has-error input,
+#learn-press-raypay-form .learn-press-form-row.has-error select{
+    border-color: #cc1600;
+}
+#learn-press-raypay-form .learn-press-form-row input {
+	direction:ltr;
+	text-align:left;
+}
+#learn-press-raypay-form .learn-press-raypay-form-clear {
+	clear:both;
+}
+#learn-press-raypay-form .learn-press-form-row label {
+	float:right;
+	width:150px;
+}
+/* rtl */
+#learn-press-raypay-form.learn-press-form-raypay-rtl {
+	direction:rtl;
+	text-align:right;
+}

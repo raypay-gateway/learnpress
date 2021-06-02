@@ -1,0 +1,114 @@
+# Copyright (C) 2021 RayPay
+# This file is distributed under the same license as the RayPay LearnPress plugin.
+msgid ""
+msgstr ""
+
+
+#. Description of the plugin
+msgid "RayPay payment gateway for LearnPress"
+msgstr ""
+
+#. Description of the plugin
+msgid "<a href=\"https://raypay.ir\">RayPay</a> secure payment gateway for LearnPress"
+msgstr ""
+
+#. Author of the plugin
+msgid "RayPay"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://raypay.ir"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:11
+#: class-learnpress-gateway-raypay.php:60
+#: class-learnpress-gateway-raypay.php:64
+#: class-learnpress-gateway-raypay.php:128
+msgid "RayPay payment gateway"
+msgstr ""
+
+msgid "Make a payment with RayPay."
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:21
+msgid "RayPay Gateway"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:75
+msgid "Rial"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:76
+msgid "Toman"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:91
+msgid "User ID"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Acceptor Code"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Enable"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Email"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Mobile"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Invalid email format."
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Invalid mobile format."
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "Invalid information."
+msgstr ""
+
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "An error occurred while verifying the transaction."
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "An error occurred while creating the transaction."
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "An error occurred while redirecting from gateway."
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "Order has been completed."
+msgstr ""
+
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "error status: %s"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:243
+msgid "error message: %s"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:253
+msgid "Payment succeeded."
+msgstr ""
+
+
+#: class-learnpress-gateway-raypay.php:265
+#: class-learnpress-gateway-raypay.php:273
+msgid "Payment failed."
+msgstr ""
