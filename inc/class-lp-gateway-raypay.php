@@ -81,8 +81,8 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
         public function __construct()
         {
             $this->id = 'raypay';
-            $this->payment_endpoint = 'http://185.165.118.211:14000/raypay/api/v1/Payment/getPaymentTokenWithUserID';
-            $this->verify_endpoint = 'http://185.165.118.211:14000/raypay/api/v1/Payment/checkInvoice';
+            $this->payment_endpoint = 'https://api.raypay.ir/raypay/api/v1/Payment/getPaymentTokenWithUserID';
+            $this->verify_endpoint = 'https://api.raypay.ir/raypay/api/v1/Payment/checkInvoice';
 
             $this->method_title = __('RayPay', 'learnpress-raypay');;
             $this->method_description = __('Make a payment with RayPay.', 'learnpress-raypay');
