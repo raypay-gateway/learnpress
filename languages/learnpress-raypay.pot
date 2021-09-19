@@ -50,7 +50,11 @@ msgid "User ID"
 msgstr ""
 
 #: class-learnpress-gateway-raypay.php:105
-msgid "Acceptor Code"
+msgid "Marketing ID"
+msgstr ""
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "sandbox"
 msgstr ""
 
 #: class-learnpress-gateway-raypay.php:105

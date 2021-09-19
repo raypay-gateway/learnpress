@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mycred-raypay-"
 "gateway\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-05-17 08:43+0430\n"
+"PO-Revision-Date: 2021-09-19 09:55+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -65,8 +65,12 @@ msgid "User ID"
 msgstr "شناسه کاربری"
 
 #: class-learnpress-gateway-raypay.php:105
-msgid "Acceptor Code"
-msgstr "کد پذیرنده"
+msgid "Marketing ID"
+msgstr "شناسه کسب و کار"
+
+#: class-learnpress-gateway-raypay.php:105
+msgid "sandbox"
+msgstr "سندباکس"
 
 #: class-learnpress-gateway-raypay.php:105
 msgid "Enable"

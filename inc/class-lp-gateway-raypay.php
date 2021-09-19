@@ -56,7 +56,12 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
         /**
          * @var array|bool|mixed|null
          */
-        private $acceptor_code = null;
+        private $marketing_id = null;
+
+        /**
+         * @var array|bool|mixed|null
+         */
+        private $sandbox = null;
 
 
         /**
@@ -81,8 +86,8 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
         public function __construct()
         {
             $this->id = 'raypay';
-            $this->payment_endpoint = 'https://api.raypay.ir/raypay/api/v1/Payment/getPaymentTokenWithUserID';
-            $this->verify_endpoint = 'https://api.raypay.ir/raypay/api/v1/Payment/checkInvoice';
+            $this->payment_endpoint = 'https://api.raypay.ir/raypay/api/v1/Payment/pay';
+            $this->verify_endpoint = 'https://api.raypay.ir/raypay/api/v1/Payment/verify';
 
             $this->method_title = __('RayPay', 'learnpress-raypay');;
             $this->method_description = __('Make a payment with RayPay.', 'learnpress-raypay');
@@ -91,6 +96,7 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
             // Get settings
             $this->title = LP()->settings->get("{$this->id}.title", $this->method_title);
             $this->description = LP()->settings->get("{$this->id}.description", $this->method_description);
+            $this->sandbox = LP()->settings->get("{$this->id}.sandbox");
 
             $settings = LP()->settings;
 
@@ -98,11 +104,13 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
             if ($settings->get("{$this->id}.enable")) {
                 $this->settings = array();
                 $this->settings['user_id'] = $settings->get("{$this->id}.user_id");
-                $this->settings['acceptor_code'] = $settings->get("{$this->id}.acceptor_code");
+                $this->settings['marketing_id'] = $settings->get("{$this->id}.marketing_id");
+                $this->settings['sandbox'] = $settings->get("{$this->id}.sandbox");
             }
 
             $this->user_id = sanitize_text_field($this->settings['user_id']);
-            $this->acceptor_code = sanitize_text_field($this->settings['acceptor_code']);
+            $this->marketing_id = sanitize_text_field($this->settings['marketing_id']);
+
 
 
             if (did_action('learn_press/raypay-add-on/loaded')) {
@@ -153,7 +161,15 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
                     array(
                         'title' => __('Enable', 'learnpress-raypay'),
                         'id' => '[enable]',
+                        'css' => 'width: 100%;',
                         'default' => 'no',
+                        'type' => 'yes-no'
+                    ),
+                    array(
+                        'title' => __('sandbox', 'learnpress-idpay'),
+                        'id' => '[sandbox]',
+                        'css' => 'width: 100%;',
+                        'default' => 'yes',
                         'type' => 'yes-no'
                     ),
                     array(
@@ -172,8 +188,8 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
                         )
                     ),
                     array(
-                        'title' => __('Acceptor Code', 'learnpress-raypay'),
-                        'id' => '[acceptor_code]',
+                        'title' => __('Marketing ID', 'learnpress-raypay'),
+                        'id' => '[marketing_id]',
                         'type' => 'text',
                         'visibility' => array(
                             'state' => 'show',
@@ -293,13 +309,10 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
                 exit();
             }
             else{
-
-
                 $invoice_id = round(microtime(true) * 1000);
-
-
+                $sandbox= !($this->sandbox === "no");
                 $customer_name = $order->get_customer_name();
-                $callback = get_site_url() . '/?' . learn_press_get_web_hook('raypay') . '=1&order_id=' . $order->get_id() . '&';
+                $callback = get_site_url() . '/?' . learn_press_get_web_hook('raypay') . '=1&order_id=' . $order->get_id();
 
                 $currency_code = learn_press_get_currency();
                 if ($currency_code == 'IRR') {
@@ -322,10 +335,11 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
                     'userID' => $this->user_id,
                     'redirectUrl' => $callback,
                     'factorNumber' => strval($order->get_id()),
-                    'acceptorCode' => $this->acceptor_code,
+                    'marketingID' => $this->marketing_id,
                     'mobile' => (!empty($this->posted['mobile'])) ? $this->posted['mobile'] : "",
                     'email' => (!empty($this->posted['email'])) ? $this->posted['email'] : "",
                     'fullName' => $customer_name,
+                    'enableSandBox' => $sandbox,
                 );
 
                 $headers = array(
@@ -351,9 +365,7 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
                 }
                 $http_status = wp_remote_retrieve_response_code($response);
                 $result = wp_remote_retrieve_body($response);
-
                 $result = json_decode($result);
-
 
                 //Check http error
                 if ($http_status != 200 || empty($result) || empty($result->Data)) {
@@ -381,16 +393,13 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
                 // Set remote status of the transaction to 1 as it's primary value.
                 update_post_meta($order->id, __('raypay_transaction_status', 'learnpress-raypay'), 1);
 
-                $access_token = $result->Data->Accesstoken;
-                $terminal_id = $result->Data->TerminalID;
-
-                $_SESSION['modulebank_raypay_form'] = '<p style="color:#ff0000; font:18px Tahoma; direction:rtl;">در حال اتصال به درگاه بانکی. لطفا صبر کنید ...</p>
-							<form name="frmRayPayPayment" method="post" action=" https://mabna.shaparak.ir:8080/Pay ">
-							<input type="hidden" name="TerminalID" value="' . $terminal_id . '" />
-							<input type="hidden" name="token" value="' . $access_token . '" />
-							<input class="submit" type="submit" value="پرداخت" /></form>
-							<script>document.frmRayPayPayment.submit();</script>';
-                return array('result' => 'success', 'redirect' => $callback);
+                $token = $result->Data;
+                $this->link = 'https://my.raypay.ir/ipg?token=' . $token;;
+                $json = array(
+                    'result' =>'success',
+                    'redirect' =>$this->link
+                );
+                return $json;
             }
         }
 
@@ -400,12 +409,10 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
          */
         public function web_hook_process_raypay()
         {
-            //$invoice_id = sanitize_text_field($_GET['?invoiceID']);
-            $invoice_id = sanitize_text_field( $_GET['?invoiceID'] );
             $order_id = sanitize_text_field($_GET['order_id']);
 
             //Check id or order_id is empty
-            if (empty($invoice_id) || empty($order_id)) {
+            if (empty($order_id)) {
                 learn_press_add_message(__('An error occurred while redirecting from gateway.', 'learnpress-raypay'), 'error');
                 wp_redirect(esc_url(learn_press_get_page_link('checkout')));
 
@@ -430,24 +437,18 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
             }
 
             //Set params and headers
-            $verify_url = add_query_arg('pInvoiceID', $invoice_id, $this->verify_endpoint);
-
-
-            $data = array(
-                'order_id' => $order_id,
-            );
 
             $headers = array(
                 'Content-Type' => 'application/json',
             );
 
             $args = array(
-                'body' => json_encode($data),
+                'body' => json_encode($_POST),
                 'headers' => $headers,
                 'timeout' => 15,
             );
 
-            $response = $this->call_gateway_endpoint($verify_url, $args);
+            $response = $this->call_gateway_endpoint($this->verify_endpoint, $args);
 
             //Check Error
             if (is_wp_error($response)) {
@@ -489,7 +490,7 @@ if ( ! class_exists( 'LP_Gateway_RayPay' ) ) {
                 exit();
             } else {
 
-                $state = $result->Data->State;
+                $state = $result->Data->Status;
                 $verify_order_id = $result->Data->FactorNumber;
                 $verify_amount = $result->Data->Amount;
 
